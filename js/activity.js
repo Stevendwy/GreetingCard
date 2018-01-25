@@ -17,7 +17,7 @@
 
   !function () {
     body.addEventListener("touchstart", touchstart)
-    // document.body.addEventListener("touchmove", touchmove)
+    document.body.addEventListener("touchmove", touchmove)
     body.addEventListener("touchend", touchend)
   }()
 
@@ -25,10 +25,10 @@
     // 每次触摸刷新
     startTouchY = e.touches[0].pageY;
   }
-  // function touchmove(e) {
-  //   // 阻止默认拖动页面事件，微信
-  //   e.preventDefault();
-  // }
+  function touchmove(e) {
+    // 阻止默认拖动页面事件，微信
+    if(e.cancelable && !e.defaultPrevented) e.preventDefault();
+  }
   function touchend(e) {
     let currentTouchY = e.changedTouches[0].pageY;
     if (Math.abs(currentTouchY - startTouchY) >= 100) {
