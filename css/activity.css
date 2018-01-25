@@ -1,7 +1,12 @@
+html,
+body {
+  height: 100%;
+}
 body {
   margin: 0;
+  overflow: hidden;
 }
-aside {
+.music-box {
   position: fixed;
   top: 10px;
   right: 20px;
@@ -24,23 +29,103 @@ aside {
     transform: rotateZ(0);
   }
 }
-aside .note {
+.music-box .note {
   height: 11px;
   animation: note 1s linear infinite;
 }
-aside .music-label {
+.music-box .music-label {
   display: block;
   width: 38px;
   height: 30px;
 }
-aside .music-label #music-select {
+.music-box .music-label #music-select {
   display: none;
 }
-aside .music-label #music-select:checked + #music {
+.music-box .music-label #music-select:checked + #music {
   background: url(../img/icon_music1.png) 0 0 / auto 30px no-repeat;
 }
-aside .music-label #music {
+.music-box .music-label #music {
   width: 38px;
   height: 30px;
   background: url(../img/icon_music.png) 0 0 / auto 30px no-repeat;
+}
+.qr-box {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  z-index: 9;
+}
+.qr-box .qr {
+  position: absolute;
+  left: 20px;
+  bottom: 13px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+.qr-box .qr .img {
+  width: 60px;
+  height: 60px;
+}
+.qr-box .qr .remind {
+  font-size: 12px;
+  color: #333;
+}
+@keyframes up {
+  from {
+    bottom: 12px;
+    opacity: 1;
+  }
+  to {
+    bottom: 30px;
+    opacity: 0;
+  }
+}
+.qr-box .pull {
+  position: absolute;
+  left: calc(50% - 10px);
+  bottom: 12px;
+  width: 20px;
+  height: 50px;
+  background: url(../img/icon_t.png) 0 0 / 20px auto no-repeat;
+  animation: up 1s linear infinite;
+}
+#activitys {
+  height: 100%;
+  transition: transform .3s linear;
+}
+#activitys .activity {
+  position: relative;
+  height: 100%;
+}
+#activitys .activity .content {
+  display: flex;
+  flex-direction: column;
+}
+#activitys .activity .content span {
+  margin-bottom: 15px;
+}
+#activitys .activity .content > span:nth-child(1) {
+  margin-top: 50px;
+}
+#activitys .activity .content > span {
+  margin-left: 20px;
+}
+#activitys .activity .backInner {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: auto;
+  z-index: -2;
+}
+#activitys .activity .back {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
 }
