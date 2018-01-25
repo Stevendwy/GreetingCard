@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>零零汽-汽配查询云服务</title>
+  <style>
+    body {
+      margin: 0;
+    }
+
+    aside {
+      position: fixed;
+      top: 10px;
+      right: 20px;
+      width: 38px;
+      height: 50px;
+      text-align: right;
+      z-index: 5;
+    }
+
+    @keyframes note {
+      0% {
+        transform: rotateZ(0)
+      }
+      25% {
+        transform: rotateZ(-15deg)
+      }
+      75% {
+        transform: rotateZ(15deg)
+      }
+      100% {
+        transform: rotateZ(0)
+      }
+    }
+
+    .note {
+      height: 11px;
+      animation: note 1s linear infinite;
+    }
+
+    .music-label {
+      display: block;
+      width: 38px;
+      height: 30px;
+    }
+
+    #music-select {
+      display: none;
+    }
+
+    #music-select:checked+#music {
+      background: url(img/icon_music1.png) 0 0 / auto 30px no-repeat;
+    }
+
+    #music {
+      width: 38px;
+      height: 30px;
+      background: url(img/icon_music.png) 0 0 / auto 30px no-repeat;
+    }
+
+    #content {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      box-sizing: border-box;
+    }
+
+    .description {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 40px 0 0 20px;
+    }
+
+    .description>span {
+      display: block;
+      margin-top: 25px;
+      font-size: 18px;
+      color: #4A4A4A;
+    }
+
+    .logo {
+      height: 18px;
+      margin-top: 8px;
+    }
+
+    .down {
+      width: 29px;
+      margin: 85px 0 70px 0;
+    }
+
+    .cards {
+      width: 270px;
+    }
+
+    .cards img {
+      width: 270px;
+      vertical-align: middle;
+      margin-bottom: 20px;
+    }
+
+    .regist {
+      width: 120px;
+      height: 40px;
+      background: #F8E2B6;
+      border-radius: 20px;
+      font-size: 12px;
+      color: #D2332D;
+      margin-top: 74px;
+      text-align: center;
+      line-height: 40px;
+      text-decoration: none;
+    }
+
+    footer {
+      position: relative;
+      font-size: 10px;
+      color: #FFFFFF;
+      margin-top: 33px;
+      text-align: center;
+    }
+
+    .mountain {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      z-index: -1;
+    }
+
+    .back {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      z-index: -1;
+    }
+  </style>
+</head>
+
+<body>
+  <aside>
+    <img class="note" src="img/p_note.png" alt="note">
+    <label class="music-label">
+      <input type="checkbox" id="music-select">
+      <div id="music"></div>
+    </label>
+    <audio src="#"></audio>
+  </aside>
+  <section id="content">
+    <section class="description">
+      <img src="img/logo.png" alt="logo" class="logo">
+      <span>实时查询配件信息</span>
+      <span>车架号锁定零件</span>
+      <span>目前支持31个汽车品牌</span>
+      <span>汽配商用户超过6,000家</span>
+      <span>汽修厂用户超过2,000家</span>
+      <span>同时支持网页、APP查询</span>
+    </section>
+    <img class="down" src="img/p_down2.png" alt="down">
+    <section class="cards">
+      <a href="activity.html">
+        <img class="day" src="img/p_q.png" alt="day">
+      </a>
+      <a href="activity.html">
+        <img class="money" src="img/p_q2.png" alt="money">
+      </a>
+    </section>
+    <a class="regist" href="activity.html">注册领取</a>
+  </section>
+  <footer>
+    <img class="mountain" src="img/p_4.png" alt="mountain">
+    <img class="back" src="img/back.png" alt="mountain">
+    <span>*注册成功，打折优惠码将发放至零零汽个人中心</span>
+    <br />
+    <span>零零汽网站 www.007vin.com</span>
+  </footer>
+</body>
+
+</html>
