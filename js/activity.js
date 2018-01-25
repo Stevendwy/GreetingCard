@@ -17,7 +17,7 @@
 
   !function () {
     body.addEventListener("touchstart", touchstart)
-    document.body.addEventListener("touchmove", touchmove)
+    body.addEventListener("touchmove", touchmove)
     body.addEventListener("touchend", touchend)
   }()
 
