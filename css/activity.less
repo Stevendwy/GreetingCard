@@ -1,0 +1,47 @@
+body {
+  margin: 0;
+}
+
+aside {
+  position: fixed;
+  top: 10px;
+  right: 20px;
+  width: 38px;
+  height: 50px;
+  text-align: right;
+  z-index: 5;
+  @keyframes note {
+    0% {
+      transform: rotateZ(0)
+    }
+    25% {
+      transform: rotateZ(-15deg)
+    }
+    75% {
+      transform: rotateZ(15deg)
+    }
+    100% {
+      transform: rotateZ(0)
+    }
+  }
+  .note {
+    height: 11px;
+    animation: note 1s linear infinite;
+  }
+  .music-label {
+    display: block;
+    width: 38px;
+    height: 30px;
+    #music-select {
+      display: none;
+    }
+    #music-select:checked+#music {
+      background: url(../img/icon_music1.png) 0 0 / auto 30px no-repeat;
+    }
+    #music {
+      width: 38px;
+      height: 30px;
+      background: url(../img/icon_music.png) 0 0 / auto 30px no-repeat;
+    }
+  }
+}
