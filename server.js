@@ -10,7 +10,7 @@ const body = require('koa-body')
 // koa 合并中间件包
 const compose = require('koa-compose')
 
-const { login } = require('./server/post')
+const { login, loginResult } = require('./server/post')
 const { index, share, descriptiion, activity } = require('./server/link')
 
 // koa-body 使用
@@ -24,7 +24,7 @@ app.use(route.get('/activity', activity))
 
 // 中间件，接口处理
 // const middlewares = compose([login])
-app.use(route.post('/login', login))
+app.use(route.post('/login', compose([login, loginResult])))
 
 // 重定向
 // app.use(route.post('/login', redirect))

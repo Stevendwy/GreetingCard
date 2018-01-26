@@ -10,11 +10,15 @@ MongoClient.connect(url, (err, db) => {
 })
 
 async function login(ctx, next) {
-  let requestBody = ctx.request.body
-  let responseBody = ctx.response.body
-  // console.log(requestBody)
-  responseBody = await new Promise((res, rej) => {
-    gc.find({username: requestBody.username}).toArray((err, result) => {
+  const result = await next()
+  
+  if(result.code === 1) ctx.response.redirect('/activity.html?username=' + ctx.request.body.username)
+  else ctx.response.redirect('/')
+}
+
+async function loginResult(ctx, next) {
+  return new Promise((res, rej) => {
+    gc.find({username: ctx.request.body.username}).toArray((err, result) => {
       if (err) throw err
       else if(result.length > 0) res(result)
       else rej()
@@ -28,15 +32,9 @@ async function login(ctx, next) {
   .catch(reject => {
     return 'empty'
   })
-
-  if(responseBody.code === 1) ctx.response.redirect('/activity.html?username=' + requestBody.username)
-  else ctx.response.redirect('/')
-}
-
-function loginResult() {
-  console.log('loginResult')
 }
 
 module.exports = {
-  login
+  login,
+  loginResult,
 }
