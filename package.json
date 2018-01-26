@@ -1,0 +1,16 @@
+{
+  "scripts": {
+    "mongodb": "sudo mongod --dbpath ./mongodb/data",
+    "server": "node server.js &",
+    "start": "npm run mongodb && npm run server"
+  },
+  "dependencies": {
+    "compose": "^0.1.2",
+    "fs.promised": "^3.0.0",
+    "koa": "^2.4.1",
+    "koa-body": "^2.5.0",
+    "koa-route": "^3.2.0",
+    "koa-static": "^4.0.2",
+    "mongodb": "^3.0.1"
+  }
+}

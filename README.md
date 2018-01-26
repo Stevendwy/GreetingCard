@@ -1,7 +1,8 @@
 [Demo 演示](https://zweizhao.github.io/GreetingCard/)
 
 ### 使用
-mongodb： `sudo mongod --dbpath ./mongodb/data`
+`npm i`
+`npm start`
 
 ![index](img/index.png)
 ![description](img/description.png)
