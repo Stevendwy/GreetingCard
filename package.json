@@ -1,7 +1,7 @@
 {
   "scripts": {
-    "mongodb": "mkdir mongodb/data -p && touch mongodb/insert.js && sudo mongod --dbpath ./mongodb/data --port 30001",
-    "mongoInsert": "node mongodb/insert.js",
+    "mongodb": "mkdir mongodb/data -p && sudo mongod --dbpath ./mongodb/data --port 30001",
+    "mongoInsert": "node insert.js",
     "server": "node server.js &",
     "start": "npm run mongodb && npm run server"
   },

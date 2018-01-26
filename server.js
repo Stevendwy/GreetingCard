@@ -13,6 +13,9 @@ const compose = require('koa-compose')
 const { login } = require('./server/post')
 const { index, share, descriptiion, activity } = require('./server/link')
 
+// koa-body 使用
+app.use(body())
+
 // 路由
 app.use(route.get('/', index))
 app.use(route.get('/share', share))
@@ -29,4 +32,7 @@ app.use(route.post('/login', login))
 // 静态文件处理
 app.use(static('./'))
 
-app.listen(3000)
+app.listen(3000, (err) => {
+  if(err) return
+  console.log('http://localhost:3000')
+})
