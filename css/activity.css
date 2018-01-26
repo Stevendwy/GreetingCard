@@ -54,7 +54,6 @@ body {
   position: absolute;
   top: -14px;
   right: 4px;
-  height: 11px;
 }
 .qr-box {
   position: absolute;
@@ -71,10 +70,6 @@ body {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-}
-.qr-box .qr .img {
-  width: 60px;
-  height: 60px;
 }
 .qr-box .qr .remind {
   font-size: 12px;
