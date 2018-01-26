@@ -31,40 +31,77 @@
       <img class="backInner" src="img/p_1.png" alt="backInner">
       <img class="back" src="img/back.png" alt="back">
       <section class="content">
-
+        <span><span class="blue">2017</span>年<span class="blue">5</span>月<span class="blue">20</span>日开始</span>
+        <span>零零汽陪你度过了<span class="yellow">210</span>个日日夜夜</span>
+        <span><span class="green">10</span>月<span class="green">11</span>日 <span class="green">22:23</span></span>
+        <span>这一天你工作到<span class="red">很晚</span></span>
       </section>
     </section>
     <section class="activity">
       <img class="backInner" src="img/p_2.png" alt="backInner">
       <img class="back" src="img/back.png" alt="back">
       <section class="content">
-
+        <span>这一年，你总共查询了</span>
+        <span><span class="yellow">534</span>个车架号</span>
+        <span><span class="green">2,366</span>个车型</span>
+        <span><span class="blue">24,387</span>个零件号</span>
+        <span>你的区域排名<span class="red">9999</span>名</span>
       </section>
     </section>
     <section class="activity">
       <img class="backInner" src="img/p_3.png" alt="backInner">
       <img class="back" src="img/back.png" alt="back">
       <section class="content">
-
+        <span><span class="blue">2017</span>年，你查询的配件总额</span>
+        <span><span class="yellow">¥23,387,600</span></span>
+        <span>其中最贵的配件金额</span>
+        <span><span class="green">¥123,893,00</span></span>
+        <span>也许你是一个隐藏的富豪～</span>
       </section>
     </section>
     <section class="activity">
-      echarts
       <img class="back" src="img/back.png" alt="back">
       <section class="content">
-
+        <span>原来你是<span class="blue">奔驰</span>汽配专家！</span>
+        <span>我对你的敬仰如滔滔江水～</span>
       </section>
+      <div id="echarts"></div>
     </section>
     <section class="activity">
-      红包
       <img class="back" src="img/back.png" alt="back">
-      <section class="content">
-
+      <section class="content full">
+        <img class="red-pack" src="img/p_red.png" alt="红包">
+        <a class="red" style="text-decoration: none;" href="share.html">查看我的年度头衔</a>
       </section>
     </section>
   </section>
 
   <script src="js/activity.js"></script>
+  <script src="js/echarts.min.js"></script>
+  <script>
+    var myChart = echarts.init(document.getElementById('echarts'));
+    // 绘制图表
+    myChart.setOption({
+      series: [
+        {
+          type: 'pie',
+          radius: [30, 110],
+          center: ['50%', '50%'],
+          roseType: 'area',
+          data: [
+            { value: 10, name: 'rose1' },
+            { value: 5, name: 'rose2' },
+            { value: 15, name: 'rose3' },
+            { value: 25, name: 'rose4' },
+            { value: 20, name: 'rose5' },
+            { value: 35, name: 'rose6' },
+            { value: 30, name: 'rose7' },
+            { value: 40, name: 'rose8' }
+          ]
+        }
+      ]
+    })
+  </script>
 </body>
 
 </html>

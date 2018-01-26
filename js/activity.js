@@ -41,13 +41,14 @@
 
     currentActivityIndex -= 1;
     transform.wTranslateY = `translateY(-${currentActivityIndex}00%)`;
-    console.log(transform)
   }
   function next() {
-    if (currentActivityIndex >= max) return;
+    if (currentActivityIndex >= max) {
+      location.href = "share.html"
+      return
+    }
 
     currentActivityIndex += 1;
     transform.wTranslateY = `translateY(-${currentActivityIndex}00%)`;
-    console.log(transform)
   }
 }()

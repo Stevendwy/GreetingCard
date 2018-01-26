@@ -90,7 +90,7 @@ body {
     left: e("calc(50% - 10px)");
     bottom: 12px;
     width: 20px;
-    height: 50px;
+    height: 36px;
     background: url(../img/icon_t.png) 0 0 ~"/" 20px auto no-repeat;
     animation: up 1s linear infinite;
   }
@@ -108,12 +108,26 @@ body {
       flex-direction: column;
       span {
         margin-bottom: 15px;
+        color: #333;
+        font-weight: 800;
       }
       &>span:nth-child(1) {
         margin-top: 50px;
       }
       &>span {
         margin-left: 20px;
+      }
+      .green {
+        color: #8BD738;
+      }
+      .blue {
+        color: #4C67E7;
+      }
+      .yellow {
+        color: #FDCD3D;
+      }
+      .red {
+        color: red;
       }
     }
     .backInner {
@@ -132,5 +146,20 @@ body {
       height: 100%;
       z-index: -1;
     }
+    #echarts {
+      height: 300px;
+      margin-top: 64px;
+    }
+    .red-pack {
+      width: 280px;
+    }
+  }
+
+  .full {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
   }
 }
