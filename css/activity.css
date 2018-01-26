@@ -29,10 +29,6 @@ body {
     transform: rotateZ(0);
   }
 }
-.music-box .note {
-  height: 11px;
-  animation: note 1s linear infinite;
-}
 .music-box .music-label {
   display: block;
   width: 38px;
@@ -44,10 +40,21 @@ body {
 .music-box .music-label #music-select:checked + #music {
   background: url(../img/icon_music1.png) 0 0 / auto 30px no-repeat;
 }
+.music-box .music-label #music-select:checked + #music > .note {
+  animation: note 1s linear infinite;
+}
 .music-box .music-label #music {
+  position: relative;
+  top: 20px;
   width: 38px;
   height: 30px;
   background: url(../img/icon_music.png) 0 0 / auto 30px no-repeat;
+}
+.music-box .music-label #music .note {
+  position: absolute;
+  top: -14px;
+  right: 4px;
+  height: 11px;
 }
 .qr-box {
   position: absolute;
