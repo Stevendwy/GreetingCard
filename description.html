@@ -48,7 +48,7 @@
     }
 
     #music-select:checked+#music {
-      background: url(img/icon_music1.png) 0 0 / auto 30px no-repeat;
+      background: url(static/img/icon_music1.png) 0 0 / auto 30px no-repeat;
     }
 
     #music-select:checked+#music>.note {
@@ -61,7 +61,7 @@
       top: 20px;
       width: 38px;
       height: 30px;
-      background: url(img/icon_music.png) 0 0 / auto 30px no-repeat;
+      background: url(static/img/icon_music.png) 0 0 / auto 30px no-repeat;
     }
 
     .note {
@@ -168,11 +168,11 @@
   <aside>
     <label class="music-label">
       <input type="checkbox" id="music-select">
-      <div id="music">
+      <div id="music" onclick="clickMusic()">
         <img class="note" src="static/img/p_note.png" alt="note" height="11">
       </div>
     </label>
-    <audio src="static/audio/bgm.mp3">您的浏览器不支持音频播放插件标签。</audio>
+    <audio id="bgm" loop src="static/audio/bgm.mp3">您的浏览器不支持音频播放插件标签。</audio>
   </aside>
   <section id="content">
     <section class="description">
@@ -202,6 +202,14 @@
     <br />
     <span>零零汽网站 www.007vin.com</span>
   </footer>
+
+  <script>
+    var bgm = document.querySelector('#bgm')
+    function clickMusic() {
+      if(bgm.paused) bgm.play()
+      else bgm.pause()
+    }
+  </script>
 </body>
 
 </html>

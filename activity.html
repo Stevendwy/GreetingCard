@@ -14,11 +14,11 @@
   <aside class="music-box">
     <label class="music-label">
       <input type="checkbox" id="music-select">
-      <div id="music">
+      <div id="music" onclick="clickMusic()">
         <img class="note" src="static/img/p_note.png" alt="note" height="11">
       </div>
     </label>
-    <audio src="#"></audio>
+    <audio id="bgm" loop src="static/audio/bgm.mp3">您的浏览器不支持音频播放插件标签。</audio>
   </aside>
   <aside class="qr-box">
     <section class="qr">
@@ -100,6 +100,12 @@
   <script src="static/js/activity.js"></script>
   <script src="static/js/echarts.min.js"></script>
   <script>
+    var bgm = document.querySelector('#bgm')
+    function clickMusic() {
+      if(bgm.paused) bgm.play()
+      else bgm.pause()
+    }
+
     var myChart = echarts.init(document.getElementById('echarts'));
     // 绘制图表
     myChart.setOption({
