@@ -6,31 +6,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>零零汽陪你走过的2017</title>
-  <link rel="preload" href="img/icon_music1.png" as="image">
-  <link rel="stylesheet" href="css/activity.css">
+  <link rel="preload" href="static/img/icon_music1.png" as="image">
+  <link rel="stylesheet" href="static/css/activity.css">
 </head>
 
 <body>
   <aside class="music-box">
     <label class="music-label">
       <input type="checkbox" id="music-select">
-      <div id="music">
-        <img class="note" src="img/p_note.png" alt="note" height="11">
+      <div id="music" onclick="clickMusic()">
+        <img class="note" src="static/img/p_note.png" alt="note" height="11">
       </div>
     </label>
-    <audio src="#"></audio>
+    <audio id="bgm" loop src="static/audio/bgm.mp3">您的浏览器不支持音频播放插件标签。</audio>
   </aside>
   <aside class="qr-box">
     <section class="qr">
-      <img src="img/qr.png" alt="二维码" width="60">
+      <img src="static/img/qr.png" alt="二维码" width="60">
       <span class="remind">零零汽</span>
     </section>
     <div class="pull"></div>
   </aside>
   <section id="activitys">
     <section class="activity">
-      <img class="backInner" src="img/p_1.png" alt="backInner">
-      <img class="back" src="img/back.png" alt="back">
+      <img class="backInner" src="static/img/p_1.png" alt="backInner">
+      <img class="back" src="static/img/back.png" alt="back">
       <section class="content">
         <span>
           <span class="blue">2017</span>年
@@ -49,8 +49,8 @@
       </section>
     </section>
     <section class="activity">
-      <img class="backInner" src="img/p_2.png" alt="backInner">
-      <img class="back" src="img/back.png" alt="back">
+      <img class="backInner" src="static/img/p_2.png" alt="backInner">
+      <img class="back" src="static/img/back.png" alt="back">
       <section class="content">
         <span>这一年，你总共查询了</span>
         <span>
@@ -64,8 +64,8 @@
       </section>
     </section>
     <section class="activity">
-      <img class="backInner" src="img/p_3.png" alt="backInner">
-      <img class="back" src="img/back.png" alt="back">
+      <img class="backInner" src="static/img/p_3.png" alt="backInner">
+      <img class="back" src="static/img/back.png" alt="back">
       <section class="content">
         <span>
           <span class="blue">2017</span>年，你查询的配件总额</span>
@@ -80,7 +80,7 @@
       </section>
     </section>
     <section class="activity">
-      <img class="back" src="img/back.png" alt="back">
+      <img class="back" src="static/img/back.png" alt="back">
       <section class="content">
         <span>原来你是
           <span class="blue">奔驰</span>汽配专家！</span>
@@ -89,17 +89,23 @@
       <div id="echarts"></div>
     </section>
     <section class="activity">
-      <img class="back" src="img/back.png" alt="back">
+      <img class="back" src="static/img/back.png" alt="back">
       <section class="content full">
-        <img class="red-pack" src="img/p_red.png" alt="红包">
+        <img class="red-pack" src="static/img/p_red.png" alt="红包">
         <a class="red" style="text-decoration: none;" href="share.html">查看我的年度头衔</a>
       </section>
     </section>
   </section>
 
-  <script src="js/activity.js"></script>
-  <script src="js/echarts.min.js"></script>
+  <script src="static/js/activity.js"></script>
+  <script src="static/js/echarts.min.js"></script>
   <script>
+    var bgm = document.querySelector('#bgm')
+    function clickMusic() {
+      if(bgm.paused) bgm.play()
+      else bgm.pause()
+    }
+    
     var xhr = new XMLHttpRequest({
       onreadystatechange: function () {
         if (this.readyState === 4 && this.status === 200) {
