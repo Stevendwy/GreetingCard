@@ -18,7 +18,7 @@
         <img class="note" src="static/img/p_note.png" alt="note" height="11">
       </div>
     </label>
-    <audio id="bgm" loop  autoplaysrc="static/audio/bgm.mp3">您的浏览器不支持音频播放插件标签。</audio>
+    <audio id="bgm" loop autoplay src="static/audio/bgm.mp3">您的浏览器不支持音频播放插件标签。</audio>
   </aside>
   <aside class="qr-box">
     <section class="qr">
@@ -32,11 +32,12 @@
       <img class="backInner" src="static/img/p_1.png" alt="backInner">
       <img class="back" src="static/img/back.png" alt="back">
       <section class="content">
-        <span><span class="blue">2017</span>年<span class="blue">5</span>月<span class="blue">20</span>日开始</span>
-        <span>零零汽陪你度过了<span class="yellow">210</span>个日日夜夜</span>
+        <span>
+          <span class="blue">2017</span>年<span class="blue" id="month"></span>月<span class="blue" id="day"></span>日开始</span>
+        <span>零零汽陪你度过了<span class="yellow" id="day_count"></span>个日日夜夜</span>
         <span>这一年,</span>
-        <span>你最早<span class="green">06:00</span>上班</span>
-        <span>最晚<span class="red">23:00</span>下班</span>
+        <span>你最早<span class="green" id="morning"></span>上班</span>
+        <span>最晚<span class="red" id="evening"></span>下班</span>
       </section>
     </section>
     <section class="activity">
@@ -45,13 +46,12 @@
       <section class="content">
         <span>这一年，你总共查询了</span>
         <span>
-          <span class="yellow">534</span>个车架号</span>
+          <span class="yellow" id="vins"></span>个车架号</span>
         <span>
-          <span class="green">2,366</span>个车型</span>
+          <span class="green" id="modles"></span>个车型</span>
         <span>
-          <span class="blue">24,387</span>个零件号</span>
-        <span>你的区域排名
-          <span class="red">9999</span>名</span>
+          <span class="blue" id="parts"></span>个零件号</span>
+        <span>你的区域排名<span class="red" id="orders"></span>名</span>
       </section>
     </section>
     <section class="activity">
@@ -61,11 +61,11 @@
         <span>
           <span class="blue">2017</span>年，你查询的配件总额</span>
         <span>
-          <span class="yellow">¥23,387,600</span>
+          <span class="yellow" id="all"></span>
         </span>
         <span>其中最贵的配件金额</span>
         <span>
-          <span class="green">¥123,893,00</span>
+          <span class="green" id="total"></span>
         </span>
         <span>也许你是一个隐藏的富豪～</span>
       </section>
@@ -73,8 +73,7 @@
     <section class="activity">
       <img class="back" src="static/img/back.png" alt="back">
       <section class="content">
-        <span>原来你是
-          <span class="blue">奔驰</span>汽配专家！</span>
+        <span>原来你是<span class="blue" id="brand">奔驰</span>汽配专家！</span>
         <span>我对你的敬仰如滔滔江水～</span>
       </section>
       <div id="echarts"></div>
@@ -97,38 +96,77 @@
       else bgm.pause()
     }
 
-    var xhr = new XMLHttpRequest({
-      onreadystatechange: function () {
-        if (this.readyState === 4 && this.status === 200) {
-          console.log(this.response)
-        }
+    var xhr = new XMLHttpRequest()
+    xhr.onreadystatechange = function () {
+      if (this.readyState === 4 && this.status === 200) {
+        buildData(JSON.parse(this.response).data)
       }
-    })
+    }
     xhr.open("GET", "/activity/reports/data")
     xhr.send()
 
-    // var myChart = echarts.init(document.getElementById('echarts'));
-    // // 绘制图表
-    // myChart.setOption({
-    //   series: [
-    //     {
-    //       type: 'pie',
-    //       radius: [30, 110],
-    //       center: ['50%', '50%'],
-    //       roseType: 'area',
-    //       data: [
-    //         { value: 10, name: 'MINI' },
-    //         { value: 5, name: '宝马' },
-    //         { value: 15, name: '奥迪' },
-    //         { value: 25, name: '大众' },
-    //         { value: 20, name: '玛莎拉蒂' },
-    //         { value: 35, name: '法拉利' },
-    //         { value: 30, name: '奔驰' },
-    //         { value: 40, name: '沃尔沃' }
-    //       ]
-    //     }
-    //   ]
-    // })
+    function buildData(data) {
+      var month = document.querySelector("#month")
+      var day = document.querySelector("#day")
+      var day_count = document.querySelector("#day_count")
+      var morning = document.querySelector("#morning")
+      var evening = document.querySelector("#evening")
+      var vins = document.querySelector("#vins")
+      var modles = document.querySelector("#modles")
+      var parts = document.querySelector("#parts")
+      var orders = document.querySelector("#orders")
+      var all = document.querySelector("#all")
+      var total = document.querySelector("#total")
+      var brand = document.querySelector("#brand")
+
+      data.forEach((item, index) => {
+        switch (index) {
+          case 0:
+            var register_date = item.register_date
+            month.innerText = register_date[1]
+            day.innerText = register_date[2]
+            day_count.innerText = item.days
+            morning.innerText = item.earliest
+            evening.innerText = item.latest
+            break
+          case 1:
+            vins.innerText = item.vins
+            modles.innerText = item.modles
+            parts.innerText = item.parts
+            orders.innerText = item.orders
+            break
+          case 2:
+            all.innerText = "¥" + item.max.toLocaleString()
+            total.innerText = "¥" + item.money_total.toLocaleString()
+            break
+          case 3:
+            brand.innerText = item.brand_cn
+
+            // 制作 Echarts
+            var echartsData = item.detail.map(detailItem => {
+              return {
+                value: detailItem.percent,
+                name: detailItem.name
+              }
+            })
+            var myChart = echarts.init(document.getElementById('echarts'));
+            // 绘制图表
+            myChart.setOption({
+              series: [
+                {
+                  type: 'pie',
+                  radius: [30, 110],
+                  center: ['50%', '50%'],
+                  roseType: 'area',
+                  data: echartsData // value/name
+                }
+              ]
+            })
+            break
+          default: ;
+        }
+      })
+    }
   </script>
 </body>
 
