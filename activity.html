@@ -32,20 +32,11 @@
       <img class="backInner" src="static/img/p_1.png" alt="backInner">
       <img class="back" src="static/img/back.png" alt="back">
       <section class="content">
-        <span>
-          <span class="blue">2017</span>年
-          <span class="blue">5</span>月
-          <span class="blue">20</span>日开始</span>
-        <span>零零汽陪你度过了
-          <span class="yellow">210</span>个日日夜夜</span>
-        <span>
-          <span class="green">10</span>月
-          <span class="green">11</span>日
-          <span class="green">22:23</span>
-        </span>
-        <span>这一天你工作到
-          <span class="red">很晚</span>
-        </span>
+        <span><span class="blue">2017</span>年<span class="blue">5</span>月<span class="blue">20</span>日开始</span>
+        <span>零零汽陪你度过了<span class="yellow">210</span>个日日夜夜</span>
+        <span>这一年,</span>
+        <span>你最早<span class="green">06:00</span>上班</span>
+        <span>最晚<span class="red">23:00</span>下班</span>
       </section>
     </section>
     <section class="activity">
@@ -102,10 +93,10 @@
   <script>
     var bgm = document.querySelector('#bgm')
     function clickMusic() {
-      if(bgm.paused) bgm.play()
+      if (bgm.paused) bgm.play()
       else bgm.pause()
     }
-    
+
     var xhr = new XMLHttpRequest({
       onreadystatechange: function () {
         if (this.readyState === 4 && this.status === 200) {
