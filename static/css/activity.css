@@ -9,7 +9,7 @@ body {
 }
 @font-face {
   font-family: pmzd;
-  src: url(static/font/pmzd.ttf);
+  src: url(../font/pmzd.ttf);
 }
 .music-box {
   position: fixed;
