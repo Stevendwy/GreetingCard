@@ -15,7 +15,7 @@ const target = 'https://test.007vin.com'
 let cookie = ''
 
 superagent
-  .post(target + '/login?username=17376582829&password=582829')
+  .post(target + '/login?username=18868432772&password=aa123456')
   .end((err, res) => {
     // console.log(res.body)
     if (res.body.code === 1) console.log('登录成功')
@@ -36,7 +36,7 @@ app.use(body())
 app.use(static('./'))
 
 // 路由
-app.use(route.get('/activity/activity_page', index))
+app.use(route.get('/', index))
 app.use(route.get('/share', share))
 app.use(route.get('/descriptiion', descriptiion))
 app.use(route.get('/activity', activity))
@@ -56,8 +56,8 @@ async function agentGet(ctx) {
         if (sRes.body.code !== 1) console.log(sRes.body)
         resolve(sRes.body)
       })
-    ctx.response.body = body
   })
+  ctx.response.body = body
 }
 
 async function agentPost(ctx) {

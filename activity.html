@@ -100,28 +100,38 @@
   <script src="js/activity.js"></script>
   <script src="js/echarts.min.js"></script>
   <script>
-    var myChart = echarts.init(document.getElementById('echarts'));
-    // 绘制图表
-    myChart.setOption({
-      series: [
-        {
-          type: 'pie',
-          radius: [30, 110],
-          center: ['50%', '50%'],
-          roseType: 'area',
-          data: [
-            { value: 10, name: 'MINI' },
-            { value: 5, name: '宝马' },
-            { value: 15, name: '奥迪' },
-            { value: 25, name: '大众' },
-            { value: 20, name: '玛莎拉蒂' },
-            { value: 35, name: '法拉利' },
-            { value: 30, name: '奔驰' },
-            { value: 40, name: '沃尔沃' }
-          ]
+    var xhr = new XMLHttpRequest({
+      onreadystatechange: function () {
+        if (this.readyState === 4 && this.status === 200) {
+          console.log(this.response)
         }
-      ]
+      }
     })
+    xhr.open("GET", "/activity/reports/data")
+    xhr.send()
+
+    // var myChart = echarts.init(document.getElementById('echarts'));
+    // // 绘制图表
+    // myChart.setOption({
+    //   series: [
+    //     {
+    //       type: 'pie',
+    //       radius: [30, 110],
+    //       center: ['50%', '50%'],
+    //       roseType: 'area',
+    //       data: [
+    //         { value: 10, name: 'MINI' },
+    //         { value: 5, name: '宝马' },
+    //         { value: 15, name: '奥迪' },
+    //         { value: 25, name: '大众' },
+    //         { value: 20, name: '玛莎拉蒂' },
+    //         { value: 35, name: '法拉利' },
+    //         { value: 30, name: '奔驰' },
+    //         { value: 40, name: '沃尔沃' }
+    //       ]
+    //     }
+    //   ]
+    // })
   </script>
 </body>
 
