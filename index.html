@@ -95,13 +95,13 @@
   <img id="header" src="img/p_l.png" alt="logo" width="210">
   <section id="content">
     <!-- <form class="form" action="activity.html" method="get"> -->
-    <form class="form" action="/login" method="post">
-      <section class="inputs">
-        <input type="text" name="username" placeholder="输入零零汽账号（手机号）" autofocus />
-        <input type="password" name="password" placeholder="输入密码" />
-      </section>
-      <button class="login" type="submit">登录查看我的年度报告</button>
-    </form>
+    <!-- <form class="form" action="/login" method="post"> -->
+    <section class="inputs">
+      <input id="username" type="text" placeholder="输入零零汽账号（手机号）" autofocus />
+      <input id="password" type="password" placeholder="输入密码" />
+    </section>
+    <button class="login" onclick="login()">登录查看我的年度报告</button>
+    <!-- </form> -->
     <section class="regist">
       <span class="remind">没有零零汽账号，</span>
       <a class="link" href="description.html">点这里 ></a>
@@ -110,6 +110,28 @@
   <footer>
     <img src="img/p_chicken.png" alt="logo" width="170">
   </footer>
+
+  <script>
+    function login() {
+      var username = document.querySelector('#username').value
+      var password = document.querySelector('#password').value
+      var url = '/login?username=' + username + '&password=' + password
+      var xhr = new XMLHttpRequest()
+      
+      xhr.open('POST', url)
+      xhr.send(JSON.stringify({
+        username: username,
+        password: password,
+      }))
+
+      xhr.onreadystatechange = function() {
+        if(this.readyState === 4 && this.status == 200) {
+          var response = JSON.parse(this.response)
+          if(response.code === 1) location.href = '/activity.html'
+        }
+      }
+    }
+  </script>
 </body>
 
 </html>

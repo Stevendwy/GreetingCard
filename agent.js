@@ -1,62 +1,81 @@
 const Koa = require('koa')
 const app = new Koa()
-const body = require('koa-body')
+
+// koa 静态文件处理包
+const static = require('koa-static')
+// koa 路由包
 const route = require('koa-route')
+// koa body 模块
+const body = require('koa-body')
+// koa 合并中间件包
+// const compose = require('koa-compose')
 const superagent = require('superagent')
 
 const target = 'https://test.007vin.com'
-
 let cookie = ''
 
 superagent
-  .post(target + '/login?username=18337125987&password=aa123456')
+  .post(target + '/login?username=17376582829&password=582829')
   .end((err, res) => {
     // console.log(res.body)
-    if(res.body.code === 1) console.log('登录成功')
+    if (res.body.code === 1) console.log('登录成功')
     else console.log(res.body)
     // 获取 Cookie, beta 处理有问题, 需要如下处理才能登陆
     cookie = res.header['set-cookie']
-    if(!(cookie instanceof String)) cookie = cookie.toString()
+    if (!(cookie instanceof String)) cookie = cookie.toString()
     cookie = cookie.replace(/(Path=\/),/g, '$1;') // 莫名的一个逗号, 需要处理成 ';'
   })
 
+const { login, loginResult } = require('./agent/post')
+const { index, share, descriptiion, activity } = require('./agent/link')
+
+// koa-body 使用
 app.use(body())
-app.use(route.get('/*', ctx => agentGet(ctx)))
-app.use(route.post('/*', ctx => agentPost(ctx)))
 
-function agentPost(ctx) {
-  let sl = ctx.headers["sys-language"]
-  superagent
-    .post(target + ctx.url)
-    .set('Content-Type', 'application/json;charset=UTF-8')    
-    .set('Cookie', cookie)
-    .set('sys-language', sl)
-    .send(ctx.request.body)
-    .end((err, sRes) => {
-      if(sRes.body.code !== 1) console.log(sRes.body)
-      // console.log(sRes.body)
-      res.set('Content-Type', 'application/json');      
-      res.send(JSON.stringify(Object.assign(sRes.body, { isLocal: true }))) // 测试标记
-      // res.end(JSON.stringify(sRes.body))
-    })
+// 静态文件处理
+app.use(static('./'))
+
+// 路由
+app.use(route.get('/activity/activity_page', index))
+app.use(route.get('/share', share))
+app.use(route.get('/descriptiion', descriptiion))
+app.use(route.get('/activity', activity))
+app.use(route.get('/*', agentGet))
+
+// 中间件，接口处理
+app.use(route.post('/*', agentPost))
+
+async function agentGet(ctx) {
+  let body = await new Promise((resolve, reject) => {
+    return superagent
+      .get(target + ctx.request.url)
+      .set('Content-Type', 'application/json;charset=UTF-8')
+      .set('Cookie', cookie)
+      .send(ctx.request.query)
+      .end((err, sRes) => {
+        if (sRes.body.code !== 1) console.log(sRes.body)
+        resolve(sRes.body)
+      })
+    ctx.response.body = body
+  })
 }
 
-function agentGet(ctx) {
-  let sl = ctx.headers["sys-language"]
-  superagent
-    .get(target + ctx.url)
-    .set('Content-Type', 'application/json;charset=UTF-8')    
-    .set('Cookie', cookie)
-    .set('sys-language', sl)
-    .send(ctx.request.query)
-    .end((err, sRes) => {
-      // console.log(sRes.body)
-      res.set('Content-Type', 'application/json');      
-      res.send(JSON.stringify(Object.assign(sRes.body, { isLocal: true })))
-    })
+async function agentPost(ctx) {
+  let body = await new Promise((resolve, reject) => {
+    return superagent
+      .post(target + ctx.request.url)
+      .set('Content-Type', 'application/json;charset=UTF-8')
+      .set('Cookie', cookie)
+      .send(ctx.request.body)
+      .end((err, sRes) => {
+        if (sRes.body.code !== 1) console.log(sRes.body)
+        resolve(sRes.body)
+      })
+  })
+  ctx.response.body = body
 }
 
-app.listen(8888, '0.0.0.0', (err) => {
-  if(err) console.log(err)
-  else console.log('run on 0.0.0.0:8888')
+app.listen(8888, (err) => {
+  if (err) return
+  console.log('http://localhost:8888')
 })

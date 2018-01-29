@@ -13,9 +13,5 @@
     "koa-route": "^3.2.0",
     "koa-static": "^4.0.2",
     "mongodb": "^3.0.1"
-  },
-  "devDependencies": {
-    "express": "^4.16.2",
-    "superagent": "^3.8.2"
   }
 }
