@@ -41,6 +41,7 @@ body {
   background: url(../img/icon_music1.png) 0 0 / auto 30px no-repeat;
 }
 .music-box .music-label #music-select:checked + #music > .note {
+  display: block;
   animation: note 1s linear infinite;
 }
 .music-box .music-label #music {
@@ -54,6 +55,7 @@ body {
   position: absolute;
   top: -14px;
   right: 4px;
+  display: none;
 }
 .qr-box {
   position: absolute;
