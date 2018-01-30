@@ -142,13 +142,19 @@
           case 3:
             brand.innerText = item.brand_cn
 
+            var colors = ['#FFB980', '#D87A80', '#5AB1EF', '#2EC7C9', '#B6A2DE']
             // 制作 Echarts
-            var echartsData = item.detail.map(detailItem => {
+            var echartsData = item.detail.map((detailItem, index) => {
+              if (index > 4) return
               return {
                 value: detailItem.percent,
-                name: detailItem.name
+                name: detailItem.name,
+                itemStyle: {
+                  color: colors[index]
+                }
               }
             })
+
             var myChart = echarts.init(document.getElementById('echarts'));
             // 绘制图表
             myChart.setOption({

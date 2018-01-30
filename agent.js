@@ -77,5 +77,5 @@ async function agentPost(ctx) {
 
 app.listen(8888, (err) => {
   if (err) return
-  console.log('http://localhost:8888')
+  console.log('run in http://localhost:8888')
 })

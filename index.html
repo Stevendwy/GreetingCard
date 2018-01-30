@@ -116,20 +116,20 @@
       var username = document.querySelector('#username').value
       var password = document.querySelector('#password').value
       var url = '/login?username=' + username + '&password=' + password
-      var xhr = new XMLHttpRequest({
-        onreadystatechange: function () {
-          if (this.readyState === 4 && this.status == 200) {
-            var response = JSON.parse(this.response)
-            if (response.code === 1) location.href = '/activity.html'
-          }
-        }
-      })
+      var xhr = new XMLHttpRequest()
 
       xhr.open('POST', url)
       xhr.send(JSON.stringify({
         username: username,
         password: password,
       }))
+
+      xhr.onreadystatechange = function () {
+        if (this.readyState === 4 && this.status == 200) {
+          var response = JSON.parse(this.response)
+          if (response.code === 1) location.href = '/activity.html'
+        }
+      }
     }
   </script>
 </body>
