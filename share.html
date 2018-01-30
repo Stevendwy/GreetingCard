@@ -76,13 +76,34 @@
         <br>
         <span>获得头衔</span>
       </section>
-      <span class="title">武夷山小财神</span>
+      <span id="title" class="title"></span>
       <br>
-      <img class="qr-img" src="static/img/qr.png" alt="二维码" width="100">
+      <img id="qr_img" class="qr-img" src="#" alt="二维码" width="100">
     </section>
     <img src="static/img/p_dog.png" alt="dog" height="60">
   </a>
   <img class="pendant down" src="static/img/p_down.png" alt="down">
+
+  <script>
+    var xhr = new XMLHttpRequest()
+    xhr.open("GET", "/activity/reports/sharedata")
+    xhr.send()
+
+    xhr.onreadystatechange = function() {
+      if(this.readyState === 4 && this.status === 200) {
+        var response = JSON.parse(this.response)
+        if(response.code === 1) buildData(response)
+        else alert(this.response)
+      }
+    }
+
+    function buildData(data) {
+      var title = document.querySelector('#title')
+      var qr_img = document.querySelector('#qr_img')
+      title.innerText = data.title
+      qr_img.src = data.qrcode_img
+    }
+  </script>
 </body>
 
 </html>
