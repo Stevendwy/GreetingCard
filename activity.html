@@ -22,7 +22,7 @@
   </aside>
   <aside class="qr-box">
     <section class="qr">
-      <img src="static/img/qr.png" alt="二维码" width="60">
+      <img id="qr_img" src="#" alt="二维码" width="60">
       <span class="remind">零零汽</span>
     </section>
     <div class="pull"></div>
@@ -33,11 +33,29 @@
       <img class="back" src="static/img/back.png" alt="back">
       <section class="content">
         <span>
-          <span class="blue">2017</span>年<span class="blue" id="month"></span>月<span class="blue" id="day"></span>日开始</span>
-        <span>零零汽陪你度过了<span class="yellow" id="day_count"></span>个日日夜夜</span>
+          <span class="blue">2017</span>
+          <span>年</span>
+          <span class="blue" id="month"></span>
+          <span>月</span>
+          <span class="blue" id="day"></span>
+          <span>日开始</span>
+        </span>
+        <span>
+          <span>零零汽陪你度过了</span>
+          <span class="yellow" id="day_count"></span>
+          <span>个日日夜夜</span>
+        </span>
         <span>这一年,</span>
-        <span>你最早<span class="green" id="morning"></span>上班</span>
-        <span>最晚<span class="red" id="evening"></span>下班</span>
+        <span>
+          <span>你最早</span>
+          <span class="green" id="morning"></span>
+          <span>上班</span>
+        </span>
+        <span>
+          <span>最晚</span>
+          <span class="red" id="evening"></span>
+          <span>下班</span>
+        </span>
       </section>
     </section>
     <section class="activity">
@@ -46,12 +64,22 @@
       <section class="content">
         <span>这一年，你总共查询了</span>
         <span>
-          <span class="yellow" id="vins"></span>个车架号</span>
+          <span class="yellow" id="vins"></span>
+          <span>个车架号</span>
+        </span>
         <span>
-          <span class="green" id="modles"></span>个车型</span>
+          <span class="green" id="modles"></span>
+          <span>个车型</span>
+        </span>
         <span>
-          <span class="blue" id="parts"></span>个零件号</span>
-        <span>你的区域排名<span class="red" id="orders"></span>名</span>
+          <span class="blue" id="parts"></span>
+          <span>个零件号</span>
+        </span>
+        <span>
+          <span>你的区域排名</span>
+          <span class="red" id="orders"></span>
+          <span>名</span>
+        </span>
       </section>
     </section>
     <section class="activity">
@@ -59,7 +87,9 @@
       <img class="back" src="static/img/back.png" alt="back">
       <section class="content">
         <span>
-          <span class="blue">2017</span>年，你查询的配件总额</span>
+          <span class="blue">2017</span>
+          <span>年，你查询的配件总额</span>
+        </span>
         <span>
           <span class="yellow" id="all"></span>
         </span>
@@ -73,7 +103,11 @@
     <section class="activity">
       <img class="back" src="static/img/back.png" alt="back">
       <section class="content">
-        <span>原来你是<span class="blue" id="brand">奔驰</span>汽配专家！</span>
+        <span>
+          <span>原来你是</span>
+          <span class="blue" id="brand">奔驰</span>
+          <span>汽配专家！</span>
+        </span>
         <span>我对你的敬仰如滔滔江水～</span>
       </section>
       <div id="echarts"></div>
@@ -82,7 +116,7 @@
       <img class="back" src="static/img/back.png" alt="back">
       <section class="content full">
         <img class="red-pack" src="static/img/p_red.png" alt="红包">
-        <a class="red" style="text-decoration: none;" href="share.html">查看我的年度头衔</a>
+        <a class="red normal" style="text-decoration: none;" href="share.html">查看我的年度头衔</a>
       </section>
     </section>
   </section>
@@ -99,7 +133,12 @@
     var xhr = new XMLHttpRequest()
     xhr.onreadystatechange = function () {
       if (this.readyState === 4 && this.status === 200) {
-        buildData(JSON.parse(this.response).data)
+        var response = JSON.parse(this.response)
+        buildData(response.data)
+
+        // 二维码地址处理
+        var qrImg = document.querySelector('#qr_img')
+        qrImg.src = response.qrcode_img
       }
     }
     xhr.open("GET", "/activity/reports/data")

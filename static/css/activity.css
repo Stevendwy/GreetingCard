@@ -135,6 +135,9 @@ body {
 #activitys .activity .content .red {
   color: red;
 }
+#activitys .activity .content .normal {
+  font-family: Arial, sans-serif;
+}
 #activitys .activity .backInner {
   position: absolute;
   left: 0;
